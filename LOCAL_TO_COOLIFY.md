@@ -28,7 +28,7 @@ git commit -m "Initial commit for Coolify deployment"
 
 ```bash
 # Add the remote repository
-git remote add origin https://github.com/YourUsername/myghostrep.git
+git remote add origin https://github.com/OfficialPr0x/myghostrep.git
 
 # Push your code
 git push -u origin main
