@@ -1,0 +1,137 @@
+/* GhostRep Scene Transitions
+   Common transitions between scenes */
+
+/* Base transition for page exits */
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.transition-out {
+  animation: fade-out 0.5s forwards;
+}
+
+/* Directional transitions - applied based on the flow direction */
+@keyframes exit-down {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
+
+@keyframes exit-up {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+
+@keyframes exit-right {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+}
+
+@keyframes exit-left {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+}
+
+/* Apply these classes dynamically based on transition direction */
+.exit-down {
+  animation: exit-down 0.5s forwards;
+}
+
+.exit-up {
+  animation: exit-up 0.5s forwards;
+}
+
+.exit-right {
+  animation: exit-right 0.5s forwards;
+}
+
+.exit-left {
+  animation: exit-left 0.5s forwards;
+}
+
+/* Page entry animations */
+@keyframes enter-from-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes enter-from-bottom {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes enter-from-left {
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes enter-from-right {
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* General content container animation - applied on page load */
+.content-container {
+  animation: fade-in 0.8s ease-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

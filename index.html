@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostRep - Deploy an AI that never sleeps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0e0e0e;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Space Grotesk', 'JetBrains Mono', sans-serif;
+        }
+        
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: 1.8rem;
+            color: #0fffc1;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(15, 255, 193, 0.6);
+            opacity: 0.9;
+        }
+        
+        .ghost-loader {
+            width: 100px;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(15, 255, 193, 0.4));
+        }
+        
+        .loader-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        .fade-out {
+            animation: fade-out 0.8s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <div class="logo-text">GHOSTREP</div>
+        <div class="loader-text">If you make it to the end, we will give you a access token to the GhostRep Stater Pack worth <span style="font-size: 1.5em; font-weight: 700;"><span style="color: white;">$</span><span style="color: lime; font-weight: 900;">139</span><span style="font-size: 0.5em; color: white;">.99</span></span></div>
+    </div>
+
+    <!-- Voice Controller for human-like narration -->
+    <script src="js/voice-controller.js"></script>
+    
+    <script>
+        // Page navigation with voice handled by voice controller
+        document.addEventListener('DOMContentLoaded', () => {
+            // Keep the page visible for 4 seconds before transitioning
+            setTimeout(() => {
+                // Stop any ongoing speech before navigation
+                if (window.speechSynthesis) {
+                    window.speechSynthesis.cancel();
+                }
+                
+                document.querySelector('.loading-container').classList.add('fade-out');
+                
+                setTimeout(() => {
+                    // Check if we're in the root directory or a subdirectory
+                    const path = window.location.pathname;
+                    const isRoot = path === '/' || path.endsWith('/index.html') || path === '/index.html';
+                    
+                    // Adjust path based on our location
+                    window.location.href = isRoot ? 'pages/intro-scene.html' : 'intro-scene.html';
+                }, 800);
+            }, 4000); // 4 second display time
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostRep - Targeting Precision</title>
+    <link rel="stylesheet" href="../css/scene-transitions.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', 'JetBrains Mono', sans-serif;
+            background-color: #0e0e0e;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Split Layout */
+        .split-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+        }
+        
+        @media (max-width: 768px) {
+            .split-container {
+                flex-direction: column;
+            }
+        }
+        
+        /* Left Side - Targeting Explanation */
+        .split-left {
+            flex: 1;
+            background: #0a0a0a;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Right Side - Targeting Visualization */
+        .split-right {
+            flex: 1;
+            background: #080808;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Ghost Logo */
+        .ghost-logo {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .ghost-logo img {
+            width: 40px;
+            height: auto;
+            margin-right: 1rem;
+            filter: drop-shadow(0 0 5px rgba(15, 255, 193, 0.4));
+        }
+        
+        .ghost-logo .logo-text {
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            color: #0fffc1;
+            text-shadow: 0 0 5px rgba(15, 255, 193, 0.6);
+        }
+        
+        /* Content Styling */
+        .content-heading {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            max-width: 80%;
+        }
+        
+        .content-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 70ch;
+            color: #e0e0e0;
+        }
+        
+        .highlight {
+            color: #0fffc1;
+            font-weight: 600;
+        }
+        
+        /* Target Visualization */
+        .target-visualization {
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .target-rings {
+            position: absolute;
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .ring-1 {
+            width: 100%;
+            height: 100%;
+            animation: pulse-ring 3s infinite alternate;
+        }
+        
+        .ring-2 {
+            width: 80%;
+            height: 80%;
+            animation: pulse-ring 3s infinite alternate-reverse;
+        }
+        
+        .ring-3 {
+            width: 60%;
+            height: 60%;
+            animation: pulse-ring 3s 0.5s infinite alternate;
+        }
+        
+        .ring-4 {
+            width: 40%;
+            height: 40%;
+            animation: pulse-ring 3s 0.5s infinite alternate-reverse;
+        }
+        
+        .target-center {
+            width: 20%;
+            height: 20%;
+            background: #0fffc1;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(15, 255, 193, 0.6);
+            animation: pulse-center 2s infinite alternate;
+        }
+        
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+            100% {
+                transform: scale(1.05);
+                border-color: rgba(15, 255, 193, 0.3);
+            }
+        }
+        
+        @keyframes pulse-center {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(15, 255, 193, 0.6);
+            }
+            100% {
+                transform: scale(1.1);
+                box-shadow: 0 0 30px rgba(15, 255, 193, 0.8);
+            }
+        }
+        
+        /* CTA Button */
+        .cta-container {
+            margin-top: 2rem;
+        }
+        
+        .cta-button {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #0fffc1 0%, #3b82f6 100%);
+            color: #0e0e0e;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(15, 255, 193, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(15, 255, 193, 0.5);
+            filter: brightness(1.1) blur(0.3px);
+        }
+        
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+        
+        /* Background Particles */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: transparent;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px #0fffc1;
+            animation: float-particle 15s infinite linear;
+        }
+        
+        @keyframes float-particle {
+            0% {
+                transform: translate(0, 0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(100vw - 100px), calc(100vh - 100px));
+                opacity: 0;
+            }
+        }
+        
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .split-left, .split-right {
+                padding: 2rem;
+                height: 50vh;
+            }
+            
+            .content-heading {
+                font-size: 2rem;
+                max-width: 100%;
+            }
+            
+            .ghost-logo {
+                top: 1rem;
+                left: 1rem;
+            }
+            
+            .target-visualization {
+                width: 80vw;
+                height: 80vw;
+                max-width: 300px;
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ghost-logo">
+        <img src="https://res.cloudinary.com/dolij7wjr/image/upload/v1744232341/messages_that_sound_like_hey_just_checking_in_lyyprj.png" alt="GhostRep Logo">
+        <div class="logo-text">GHOSTREP</div>
+    </div>
+    
+    <div class="split-container">
+        <!-- Left Side - Content -->
+        <div class="split-left">
+            <h1 class="content-heading">Pinpoint Precision Targeting</h1>
+            <p class="content-text">
+                Your ghost doesn't waste time on cold targets. Using advanced <span class="highlight">AI qualification algorithms</span>, we filter prospects based on:
+            </p>
+            <ul class="content-text">
+                <li>Engagement history and behavioral patterns</li>
+                <li>Decision-making authority signals</li>
+                <li>Custom intent triggers you define</li>
+                <li>Real-time response analysis</li>
+                <li>Adaptive learning from successful conversions</li>
+            </ul>
+            <p class="content-text">
+                This ensures your ghost only engages with the <span class="highlight">highest-value prospects</span> most likely to convert.
+            </p>
+            <div class="cta-container">
+                <button class="cta-button">Next: Perfect Messaging</button>
+            </div>
+        </div>
+        
+        <!-- Right Side - Visualization -->
+        <div class="split-right">
+            <div class="particles-container">
+                <div class="particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+                <div class="particle" style="top: 30%; left: 50%; animation-delay: 2s;"></div>
+                <div class="particle" style="top: 70%; left: 30%; animation-delay: 4s;"></div>
+                <div class="particle" style="top: 40%; left: 80%; animation-delay: 6s;"></div>
+                <div class="particle" style="top: 80%; left: 10%; animation-delay: 8s;"></div>
+            </div>
+            
+            <div class="target-visualization">
+                <div class="target-rings ring-1"></div>
+                <div class="target-rings ring-2"></div>
+                <div class="target-rings ring-3"></div>
+                <div class="target-rings ring-4"></div>
+                <div class="target-center"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Voice Controller for human-like narration -->
+    <script src="../js/voice-controller.js"></script>
+
+    <script src="../js/flow-controller.js"></script>
+    <script src="../js/hud-component.js"></script>
+    
+    <script>
+        // Add event listener to the CTA button
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            // Add fade-out transition
+            document.body.style.transition = 'opacity 0.8s ease';
+            document.body.style.opacity = '0';
+            
+            // Navigate to messaging.html after transition
+            setTimeout(function() {
+                window.location.href = '../pages/messaging.html';
+            }, 800);
+        });
+    </script>
+</body>
+</html>

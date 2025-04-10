@@ -1,0 +1,177 @@
+/* GhostRep MINI Cards Styling */
+
+.mini-card {
+  background: rgba(20, 20, 35, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  height: 280px;
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Card hover effect */
+.mini-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Platform-specific styling */
+.mini-card.linkedin { border-top: 3px solid #0077B5; }
+.mini-card.instagram { border-top: 3px solid #E1306C; }
+.mini-card.twitter { border-top: 3px solid #1DA1F2; }
+.mini-card.email { border-top: 3px solid #00B2E3; }
+.mini-card.calendar { border-top: 3px solid #00C781; }
+.mini-card.reddit { border-top: 3px solid #FF4500; }
+
+/* Platform-specific glow on hover */
+.mini-card.linkedin:hover { box-shadow: 0 15px 40px rgba(0, 119, 181, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.2); }
+.mini-card.instagram:hover { box-shadow: 0 15px 40px rgba(225, 48, 108, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.2); }
+.mini-card.twitter:hover { box-shadow: 0 15px 40px rgba(29, 161, 242, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.2); }
+.mini-card.email:hover { box-shadow: 0 15px 40px rgba(0, 178, 227, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.2); }
+.mini-card.calendar:hover { box-shadow: 0 15px 40px rgba(0, 199, 129, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.2); }
+.mini-card.reddit:hover { box-shadow: 0 15px 40px rgba(255, 69, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.2); }
+
+/* Platform Icon */
+.platform-icon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+
+.linkedin .platform-icon { color: #0077B5; }
+.instagram .platform-icon { color: #E1306C; }
+.twitter .platform-icon { color: #1DA1F2; }
+.email .platform-icon { color: #00B2E3; }
+.calendar .platform-icon { color: #00C781; }
+.reddit .platform-icon { color: #FF4500; }
+
+/* Card Content */
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.5rem;
+}
+
+.mini-title {
+  font-family: var(--font-space);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.mini-niche {
+  font-size: 1rem;
+  color: #b0b0c0;
+  margin-bottom: 1rem;
+}
+
+.mini-tone {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tone-label {
+  color: #a0a0b0;
+}
+
+.tone-value {
+  font-weight: 600;
+  padding: 0.2rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+}
+
+/* Tone colors */
+.tone-balanced {
+  background-color: rgba(100, 130, 255, 0.2);
+  color: #aac0ff;
+}
+
+.tone-aggressive {
+  background-color: rgba(255, 80, 80, 0.2);
+  color: #ffacac;
+}
+
+.tone-soft {
+  background-color: rgba(80, 180, 255, 0.2);
+  color: #a0d0ff;
+}
+
+/* Card Footer */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.deploy-time {
+  color: #a0a0b0;
+  font-weight: 500;
+}
+
+.mini-price {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+/* Preview Button */
+.preview-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.6rem 0;
+  width: 100%;
+  border-radius: 6px;
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.preview-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Placeholder card styling (for development) */
+.mini-card.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 20, 40, 0.3);
+  border-top: 3px solid var(--ghost-teal);
+}
+
+.mini-card.placeholder h3 {
+  color: var(--ghost-teal);
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mini-card {
+    height: auto;
+    min-height: 240px;
+  }
+}

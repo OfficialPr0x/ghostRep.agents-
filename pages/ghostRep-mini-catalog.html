@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GhostRep Mini Catalog | AI Sales Agents For Every Niche</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #070711;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    
+    header {
+      background: linear-gradient(145deg, #0a0a10, #131320);
+      padding: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255, 152, 0, 0.05)' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        linear-gradient(145deg, #0a0a10, #131320);
+      opacity: 0.8;
+      z-index: 0;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    
+    .page-title {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #FFC107, #FF9800);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+      font-weight: 800;
+    }
+    
+    .page-subtitle {
+      font-size: 1.5rem;
+      color: #cbd5e1;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+    }
+    
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .tab-button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(255, 152, 0, 0.1);
+      border: 1px solid rgba(255, 152, 0, 0.3);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .tab-button:hover, .tab-button.active {
+      background: rgba(255, 152, 0, 0.2);
+      border-color: rgba(255, 152, 0, 0.5);
+      transform: translateY(-3px);
+    }
+    
+    .tab-button.active {
+      box-shadow: 0 0 20px rgba(255, 152, 0, 0.3);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .mini-card {
+      background: rgba(30, 30, 46, 0.4);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 152, 0, 0.2);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .mini-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 152, 0, 0.1);
+      border-color: rgba(255, 152, 0, 0.5);
+    }
+    
+    .mini-card-header {
+      padding: 2rem;
+      background: linear-gradient(145deg, rgba(255, 152, 0, 0.05), rgba(255, 193, 7, 0.1));
+      border-bottom: 1px solid rgba(255, 152, 0, 0.1);
+      text-align: center;
+    }
+    
+    .mini-card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #FFC107;
+    }
+    
+    .mini-card-price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #FF9800;
+      margin-bottom: 0.5rem;
+    }
+    
+    .mini-card-body {
+      padding: 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .mini-card-description {
+      color: #e2e8f0;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    
+    .mini-card-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      border-top: 1px solid rgba(255, 152, 0, 0.1);
+      padding-top: 1rem;
+    }
+    
+    .mini-card-stat {
+      text-align: center;
+      flex: 1;
+    }
+    
+    .mini-card-stat-value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #FFC107;
+    }
+    
+    .mini-card-stat-label {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+    }
+    
+    .mini-card-button {
+      padding: 1rem 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0a0a10;
+      background: linear-gradient(90deg, #FFC107, #FF9800);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .mini-card-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 152, 0, 0.3);
+    }
+    
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+      gap: 0.5rem;
+    }
+    
+    .page-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 152, 0, 0.1);
+      border: 1px solid rgba(255, 152, 0, 0.3);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .page-button:hover, .page-button.active {
+      background: rgba(255, 152, 0, 0.2);
+      border-color: rgba(255, 152, 0, 0.5);
+    }
+    
+    .page-button.active {
+      background: linear-gradient(90deg, #FFC107, #FF9800);
+      color: #0a0a10;
+    }
+    
+    .back-to-main {
+      display: inline-block;
+      margin-top: 3rem;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0a0a10;
+      background: linear-gradient(90deg, #FFC107, #FF9800);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+    }
+    
+    .back-to-main:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 152, 0, 0.3);
+    }
+    
+    footer {
+      background: #0a0a10;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 152, 0, 0.1);
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1 class="page-title">GhostRep Mini Catalog</h1>
+      <p class="page-subtitle">Browse our collection of 36 specialized AI sales agents ready to deploy instantly. Each GhostRep Mini is fine-tuned for specific industries, platforms, and communication styles — all at just $96.</p>
+    </div>
+  </header>
+  
+  <main class="container">
+    <div class="tabs">
+      <button class="tab-button active" data-tab="niches">By Niche</button>
+      <button class="tab-button" data-tab="industries">By Industry</button>
+      <button class="tab-button" data-tab="platforms">By Platform</button>
+    </div>
+    
+    <!-- By Niche Tab -->
+    <div class="tab-content active" id="niches">
+      <div class="mini-grid">
+        <!-- Niche 1 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Coach Connector</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Specialized for coaches who need a steady flow of discovery calls. This agent qualifies prospects based on budget and timeframe before booking them directly to your calendar.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">8-12</div>
+                <div class="mini-card-stat-label">Calls/Week</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">4.8x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">24/7</div>
+                <div class="mini-card-stat-label">Availability</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Niche 2 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Consultant Closer</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Perfect for consultants needing high-ticket clients. This agent uses sophisticated qualification sequences and handles objections with industry-specific knowledge.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">5-7</div>
+                <div class="mini-card-stat-label">Calls/Week</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">6.2x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">3+</div>
+                <div class="mini-card-stat-label">Channels</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Niche 3 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Agency Accelerator</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Built for digital agencies looking to scale client acquisition. This agent qualifies leads, demonstrates your expertise, and positions your services as the premium solution.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">10+</div>
+                <div class="mini-card-stat-label">Calls/Week</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">5.5x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">65%</div>
+                <div class="mini-card-stat-label">Conversion</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Niche 4 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Realtor's Right Hand</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Essential for real estate professionals who need to qualify property buyers and sellers. This agent screens for serious prospects and schedules viewings or consultations.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">15+</div>
+                <div class="mini-card-stat-label">Leads/Week</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">4.3x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">72%</div>
+                <div class="mini-card-stat-label">Time Saved</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Niche 5 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Course Creator's Companion</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Designed for online course creators and educators. This agent connects with potential students, qualifies them based on goals, and books strategy sessions to discuss enrollment.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">12+</div>
+                <div class="mini-card-stat-label">Calls/Week</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">5.8x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">82%</div>
+                <div class="mini-card-stat-label">Enrollment</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Niche 6 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">E-commerce Expert</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Perfect for e-commerce store owners looking to engage with potential customers. This agent handles product inquiries, provides recommendations, and drives sales conversions.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">30+</div>
+                <div class="mini-card-stat-label">Chats/Day</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">3.9x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">24%</div>
+                <div class="mini-card-stat-label">Conv. Rate</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Niche 7 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Startup Scheduler</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Crafted for startup founders who need to fill their calendar with investor meetings and partnership calls. This agent screens for serious opportunities and qualifies intentions.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">6-8</div>
+                <div class="mini-card-stat-label">Meetings/Week</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">4.7x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">40+</div>
+                <div class="mini-card-stat-label">Hours Saved</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Niche 8 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Fitness Funnel</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Optimized for fitness coaches and personal trainers. This agent screens for fitness goals, commitment level, and budget to book qualified consultation calls with serious clients.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">15+</div>
+                <div class="mini-card-stat-label">Leads/Week</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">4.2x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">68%</div>
+                <div class="mini-card-stat-label">Conversion</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Niche 9 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Financial Advisor Friend</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Designed for financial advisors and planners. This agent qualifies prospects based on assets, goals, and timeline, booking only serious clients looking for financial guidance.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">7-9</div>
+                <div class="mini-card-stat-label">Clients/Month</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">7.1x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">92%</div>
+                <div class="mini-card-stat-label">Qualification</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Niche 10 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Legal Lead Generator</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Built for attorneys and legal professionals. This agent screens potential clients, gathers case details, and schedules consultations with qualified prospects requiring your legal expertise.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">8-10</div>
+                <div class="mini-card-stat-label">Consultations/Week</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">6.3x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">85%</div>
+                <div class="mini-card-stat-label">Relevance</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Niche 11 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Healthcare Helper</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Specialized for healthcare practitioners. This agent screens patients, gathers relevant symptoms and history, and books appointments with qualified individuals seeking your services.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">20+</div>
+                <div class="mini-card-stat-label">Appointments/Week</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">3.8x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">65%</div>
+                <div class="mini-card-stat-label">Time Saved</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Niche 12 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Event Expert</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Perfect for event planners and venue owners. This agent handles inquiries, qualifies event details and budget, and schedules consultations with serious clients planning events.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">10-12</div>
+                <div class="mini-card-stat-label">Bookings/Month</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">5.1x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">93%</div>
+                <div class="mini-card-stat-label">Satisfaction</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pagination">
+        <button class="page-button active">1</button>
+        <button class="page-button">2</button>
+        <button class="page-button">3</button>
+      </div>
+    </div>
+    
+    <!-- By Industry Tab -->
+    <div class="tab-content" id="industries">
+      <div class="mini-grid">
+        <!-- Industry 1 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">SaaS Sales Specialist</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Optimized for SaaS companies looking to book demos. This agent qualifies leads, handles objections specific to software purchases, and schedules product demonstrations.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">15+</div>
+                <div class="mini-card-stat-label">Demos/Week</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">5.2x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">76%</div>
+                <div class="mini-card-stat-label">Qualification</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Industry 2 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Real Estate Rep</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Designed for real estate professionals. This agent screens potential buyers and sellers, gathers requirements, and schedules showing appointments with qualified leads.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">18+</div>
+                <div class="mini-card-stat-label">Leads/Week</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">4.5x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">68%</div>
+                <div class="mini-card-stat-label">Conversion</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- More industry cards would be here... -->
+      </div>
+      
+      <div class="pagination">
+        <button class="page-button active">1</button>
+        <button class="page-button">2</button>
+        <button class="page-button">3</button>
+      </div>
+    </div>
+    
+    <!-- By Platform Tab -->
+    <div class="tab-content" id="platforms">
+      <div class="mini-grid">
+        <!-- Platform 1 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">LinkedIn Launcher</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Specialized for LinkedIn outreach and engagement. This agent handles connection requests, follow-ups, and books calls with qualified leads from your LinkedIn network.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">25+</div>
+                <div class="mini-card-stat-label">Connects/Day</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">6.3x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">32%</div>
+                <div class="mini-card-stat-label">Response Rate</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- Platform 2 -->
+        <div class="mini-card">
+          <div class="mini-card-header">
+            <h3 class="mini-card-title">Instagram Insider</h3>
+            <div class="mini-card-price">$96</div>
+          </div>
+          <div class="mini-card-body">
+            <p class="mini-card-description">Built for Instagram DM outreach. This agent engages with potential clients, qualifies their interest, and schedules calls with prospects who match your ideal client profile.</p>
+            <div class="mini-card-stats">
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">30+</div>
+                <div class="mini-card-stat-label">DMs/Day</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">4.9x</div>
+                <div class="mini-card-stat-label">ROI</div>
+              </div>
+              <div class="mini-card-stat">
+                <div class="mini-card-stat-value">28%</div>
+                <div class="mini-card-stat-label">Conversion</div>
+              </div>
+            </div>
+            <button class="mini-card-button">Deploy Now</button>
+          </div>
+        </div>
+        
+        <!-- More platform cards would be here... -->
+      </div>
+      
+      <div class="pagination">
+        <button class="page-button active">1</button>
+        <button class="page-button">2</button>
+        <button class="page-button">3</button>
+      </div>
+    </div>
+    
+    <a href="ghostRep.html" class="back-to-main">Back to Main Page</a>
+  </main>
+  
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 GhostRep. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <script>
+    // Tab Switching
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        // Hide all tab contents
+        tabContents.forEach(content => content.classList.remove('active'));
+        // Show the selected tab content
+        const tabId = button.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+    
+    // Pagination
+    const pageButtons = document.querySelectorAll('.page-button');
+    
+    pageButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Find parent pagination
+        const pagination = button.closest('.pagination');
+        // Get all buttons in this pagination
+        const buttons = pagination.querySelectorAll('.page-button');
+        
+        // Remove active class from all buttons
+        buttons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        // Here you would typically load different content or cards
+        // For this demo, we'll just scroll back to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+    
+    // Deploy Buttons
+    const deployButtons = document.querySelectorAll('.mini-card-button');
+    
+    deployButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.mini-card');
+        const title = card.querySelector('.mini-card-title').textContent;
+        
+        alert(`Deploying your ${title} GhostRep Mini! Check your email for setup instructions.`);
+      });
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GhostRep | Your AI Sales Agent</title>
+  <style>
+    html, body {
+      scroll-behavior: auto !important;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .preload-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0a0a10;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <script>
+    window.scrollTo(0, 0);
+    if (window.location.hash) {
+      window.location.hash = '';
+      window.location.href = window.location.pathname;
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/ghostRep.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+</head>
+<body id="start">
+  <!-- Preload overlay -->
+  <div class="preload-overlay">
+    <svg width="300" height="300" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="loaderGhostGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0fffc1" />
+          <stop offset="100%" stop-color="#3b82f6" />
+        </linearGradient>
+      </defs>
+      <path fill="url(#loaderGhostGradient)" d="M100,20 C60,20 40,50 40,90 L40,160 C40,180 60,175 60,160 L60,150 C60,140 80,140 80,150 L80,160 C80,175 100,175 100,160 L100,150 C100,140 120,140 120,150 L120,160 C120,175 140,175 140,160 L140,150 C140,140 160,140 160,150 L160,160 C160,175 180,180 180,160 L180,90 C180,50 140,20 100,20 Z M75,70 C65,70 65,90 75,90 C85,90 85,70 75,70 Z M125,70 C115,70 115,90 125,90 C135,90 135,70 125,70 Z" />
+    </svg>
+  </div>
+  
+  <!-- Mobile Sticky CTA -->
+  <div class="mobile-cta">
+    <button class="cta-button" onclick="window.location.href='#offer'" style="width: 100%; margin: 0;">🔥 Deploy My GhostRep</button>
+  </div>
+
+  <!-- Hero Scene -->
+  <section class="scene hero-scene">
+    <!-- Ghost Animation - consistent across all pages -->
+    <div class="ghost-animation">
+      <img class="ghost" src="https://res.cloudinary.com/dyrwj6iwl/image/upload/v1744127182/Phantom-Wraith_pmkab6.gif" alt="Spectral ghost">
+    </div>
+    <div class="hero-content">
+      <h1><span class="typewriter" id="hero-typewriter">Book Calls While You Sleep</span></h1>
+      <p class="hero-text">GhostRep automates outreach, follow-ups, and booking—no VAs, no fluff, no wasted time.</p>
+      <button class="cta-button" onclick="window.location.href='#offer'">🔥 Deploy My GhostRep</button>
+    </div>
+  </section>
+
+  <!-- Sales Scene - Enhanced with video and eye-catching design -->
+  <section class="scene sales-scene">
+    <div class="sales-content-wrapper">
+      <div class="sales-content">
+        <div class="sales-badge">INSTANT DEPLOY • JUST $96</div>
+        <h2 class="sales-title">Your 24/7 AI Sales Machine</h2>
+        <p class="sales-description"><strong>GhostRep Mini:</strong> An AI agent that delivers qualified leads directly to your calendar while you sleep.</p>
+        <p class="sales-description">No complicated setup. No maintenance. Just automated lead generation that actually works.</p>
+        <div class="sales-stats">
+          <div class="stat-item">
+            <div class="stat-value">10+</div>
+            <div class="stat-label">Leads/Week</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">5.2x</div>
+            <div class="stat-label">Average ROI</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">Availability</div>
+          </div>
+        </div>
+        <button class="cta-mini" onclick="window.location.href = '../pages/ghostRep-mini-catalog.html'">🔥 Deploy My $96 GhostRep Mini</button>
+      </div>
+      <div class="video-container">
+        <img src="https://via.placeholder.com/640x360/131320/a0aec0?text=GhostRep+Demo" alt="GhostRep Demo" class="video-content">
+        <div class="play-button">
+          <i class="fas fa-play"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top 3 FOMO Minis Section -->
+  <section class="scene fomo-minis-section">
+    <div class="scene-content">
+      <h2 class="fomo-section-title">Our Hottest GhostRep Minis</h2>
+      <div class="fomo-minis-container">
+        <!-- FOMO Mini #1 -->
+        <div class="fomo-mini-card">
+          <div class="fomo-badge">MOST POPULAR</div>
+          <div class="fomo-mini-icon"><i class="fas fa-instagram"></i></div>
+          <h3 class="fomo-mini-title">Instagram DM Closer</h3>
+          <p class="fomo-mini-description">Automated DM conversations that convert profile visitors into qualified calls.</p>
+          <div class="fomo-mini-price">$96</div>
+          <button class="fomo-mini-cta">Deploy Now</button>
+          
+          <!-- Tooltip content that shows on hover -->
+          <div class="fomo-tooltip">
+            <h3 class="tooltip-title">Make Money With</h3>
+            <h4 class="tooltip-subtitle">Instagram DM Closer</h4>
+            <div class="tooltip-benefits">
+              <div class="benefit-item">
+                <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                <span class="benefit-text">Save 15+ hours/week on manual DM outreach</span>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                <span class="benefit-text">Convert profile visitors into paid clients 24/7</span>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                <span class="benefit-text">Average 3-5 qualified calls booked weekly</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FOMO Mini #2 -->
+        <div class="fomo-mini-card">
+          <div class="fomo-badge">HIGHEST ROI</div>
+          <div class="fomo-mini-icon"><i class="fas fa-envelope"></i></div>
+          <h3 class="fomo-mini-title">Email Followup Pro</h3>
+          <p class="fomo-mini-description">Never lose a lead with smart email sequences that keep conversations alive.</p>
+          <div class="fomo-mini-price">$96</div>
+          <button class="fomo-mini-cta">Deploy Now</button>
+          
+          <!-- Tooltip content that shows on hover -->
+          <div class="fomo-tooltip">
+            <h3 class="tooltip-title">Buy Back Time With</h3>
+            <h4 class="tooltip-subtitle">Email Followup Pro</h4>
+            <div class="tooltip-benefits">
+              <div class="benefit-item">
+                <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                <span class="benefit-text">Eliminate 10+ hours of weekly email management</span>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                <span class="benefit-text">Increase response rates by up to 42%</span>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                <span class="benefit-text">Reactivate cold leads automatically with smart timing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FOMO Mini #3 -->
+        <div class="fomo-mini-card">
+          <div class="fomo-badge">NEW RELEASE</div>
+          <div class="fomo-mini-icon"><i class="fas fa-calendar-check"></i></div>
+          <h3 class="fomo-mini-title">Calendar Filler</h3>
+          <p class="fomo-mini-description">AI agent that qualifies leads and books them directly into your calendar.</p>
+          <div class="fomo-mini-price">$96</div>
+          <button class="fomo-mini-cta">Deploy Now</button>
+          
+          <!-- Tooltip content that shows on hover -->
+          <div class="fomo-tooltip">
+            <h3 class="tooltip-title">Maximize Revenue With</h3>
+            <h4 class="tooltip-subtitle">Calendar Filler</h4>
+            <div class="tooltip-benefits">
+              <div class="benefit-item">
+                <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                <span class="benefit-text">Fill your calendar with pre-qualified prospects</span>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                <span class="benefit-text">Focus only on closing deals, not finding leads</span>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                <span class="benefit-text">Increase calendar density by 28% on average</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features and remaining sections... -->
+  <section class="scene mini-catalog-scene">
+    <div class="mini-catalog-content">
+      <h2>Need Something Specific?</h2>
+      <p>Browse our collection of 36 specialized AI sales agents, each optimized for specific industries, platforms, and communication styles.</p>
+      <a href="ghostRep-mini-catalog.html" class="catalog-button">Browse All GhostRep Minis</a>
+    </div>
+  </section>
+
+  <!-- Simple JS for animations -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hide preloader
+      setTimeout(function() {
+        const preloader = document.querySelector('.preload-overlay');
+        if (preloader) {
+          preloader.style.opacity = '0';
+          setTimeout(() => {
+            preloader.style.display = 'none';
+          }, 500);
+        }
+      }, 800);
+      
+      // Delay typewriter animation until after Phantom-Wraith animation completes
+      // Phantom-Wraith animation takes 5.4s (1.2s fade in + 3s hold + 1.2s fade out)
+      // Add 0.3s delay after fade out before starting typewriter
+      setTimeout(() => {
+        // Initialize typewriter with first slogan
+        const typewriterElement = document.getElementById('hero-typewriter');
+        typewriterElement.style.opacity = 0;
+        
+        setTimeout(() => {
+          typewriterElement.style.opacity = 1;
+        }, 300);
+        
+        // Setup slogan rotation
+        const slogans = [
+          "Book Calls While You Sleep",
+          "Deploy Your AI Sales Rep in 72 Hours",
+          "Never Miss a Lead Again",
+          "Your Best SDR Never Takes a Day Off"
+        ];
+        
+        let currentSlogan = 0;
+        const cycleType = () => {
+          typewriterElement.style.opacity = 0;
+          
+          setTimeout(() => {
+            currentSlogan = (currentSlogan + 1) % slogans.length;
+            typewriterElement.textContent = slogans[currentSlogan];
+            typewriterElement.style.opacity = 1;
+          }, 500);
+        };
+        
+        // Start cycling after the first slogan has been displayed for a while
+        setInterval(cycleType, 6000);
+      }, 5700); // 5.4s for animation + 0.3s delay
+    });
+  </script>
+</body>
+</html>
+

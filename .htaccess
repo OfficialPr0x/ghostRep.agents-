@@ -1,0 +1,11 @@
+# Enable Passenger for Node.js applications
+PassengerEnabled on
+PassengerAppType node
+PassengerStartupFile server.js
+
+# Use the node installation from NVM
+# You may need to update this path based on your actual Node.js installation
+PassengerNodejs /home/dh_rtrb66/.nvm/versions/node/v16.19.1/bin/node
+
+# Set environment to production
+SetEnv NODE_ENV production

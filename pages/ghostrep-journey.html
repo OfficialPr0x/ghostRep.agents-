@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostRep - Deploy an AI that never sleeps</title>
+    <link rel="stylesheet" href="../css/scene-framework.css">
+    <link rel="stylesheet" href="../css/mini-cards.css">
+    <link rel="stylesheet" href="../css/warp-effect.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- GSAP for smooth animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        /* Scene-specific styles that complement the framework */
+        
+        /* Scene 1: Intro - Ghost Chamber */
+        #scene-1 {
+            background-color: var(--ghost-dark);
+        }
+        
+        #scene-1 .typewriter-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+        
+        #scene-1 .typewriter-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            font-family: var(--font-mono);
+        }
+        
+        #scene-1 .cursor {
+            width: 12px;
+            height: 28px;
+            background-color: white;
+            margin-left: 4px;
+            animation: cursor-blink 1s step-end infinite;
+            display: none;
+        }
+        
+        @keyframes cursor-blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        /* Scene 2: The Problem - Pressure Zone */
+        #scene-2 {
+            background-color: #0a0a0a;
+        }
+        
+        #scene-2 .primary-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 70ch;
+        }
+        
+        #scene-2 .line {
+            font-family: var(--font-space);
+            font-weight: 700;
+            font-size: 2.5rem;
+            line-height: 1.1;
+            text-align: center;
+        }
+        
+        #scene-2 .tagline {
+            font-family: var(--font-space);
+            font-weight: 800;
+            font-size: 3rem;
+            color: var(--ghost-red);
+            margin: 2rem 0;
+        }
+        
+        #scene-2 .pressure-gauge {
+            width: 60%;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 3rem 0;
+            overflow: hidden;
+            border-radius: 2px;
+            position: relative;
+        }
+        
+        #scene-2 .gauge-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--ghost-red), #ff2d55);
+        }
+        
+        /* Scene 3: MINI Selection */
+        #scene-3 {
+            background: radial-gradient(ellipse at center, #12121e 0%, #08080f 100%);
+        }
+        
+        #scene-3 .scene-title {
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(120deg, #ffffff, #a0a0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 8px rgba(160, 160, 255, 0.4));
+        }
+        
+        #scene-3 .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+        
+        @media (max-width: 1200px) {
+            #scene-3 .mini-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #scene-3 .mini-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Placeholder styles for future scenes */
+        #scene-4, #scene-5, #scene-6, #scene-7 {
+            background-color: var(--ghost-darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #scene-4 .scene-content, 
+        #scene-5 .scene-content, 
+        #scene-6 .scene-content, 
+        #scene-7 .scene-content {
+            text-align: center;
+        }
+        
+        /* Directional indicators */
+        .direction-indicator {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--ghost-teal);
+            animation: pulse 2s infinite ease-in-out;
+            z-index: 20;
+        }
+        
+        .direction-down {
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .direction-up {
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .direction-right {
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .direction-left {
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.7;
+                transform: translateY(0) scale(1) translateX(-50%);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(10px) scale(1.1) translateX(-50%);
+            }
+        }
+        
+        /* Direction indicators for different directions */
+        @keyframes pulse-up {
+            0%, 100% {
+                opacity: 0.7;
+                transform: translateY(0) scale(1) translateX(-50%);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-10px) scale(1.1) translateX(-50%);
+            }
+        }
+        
+        @keyframes pulse-right {
+            0%, 100% {
+                opacity: 0.7;
+                transform: translateX(0) scale(1) translateY(-50%);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(10px) scale(1.1) translateY(-50%);
+            }
+        }
+        
+        @keyframes pulse-left {
+            0%, 100% {
+                opacity: 0.7;
+                transform: translateX(0) scale(1) translateY(-50%);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-10px) scale(1.1) translateY(-50%);
+            }
+        }
+        
+        .direction-up {
+            animation: pulse-up 2s infinite ease-in-out;
+        }
+        
+        .direction-right {
+            animation: pulse-right 2s infinite ease-in-out;
+        }
+        
+        .direction-left {
+            animation: pulse-left 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mini-Map HUD -->
+    <div class="mini-map">
+        <div class="mini-map-path">
+            <div class="scene-dot" data-scene="1"></div>
+            <div class="scene-dot" data-scene="2"></div>
+            <div class="scene-dot" data-scene="3"></div>
+            <div class="scene-dot" data-scene="4"></div>
+            <div class="scene-dot" data-scene="5"></div>
+            <div class="scene-dot" data-scene="6"></div>
+            <div class="scene-dot" data-scene="7"></div>
+        </div>
+    </div>
+    
+    <!-- Scene 1: Intro - Ghost Chamber (Silent Deployment) -->
+    <section id="scene-1" class="scene-container">
+        <!-- Smoke background -->
+        <div class="smoke-layer smoke-layer-1"></div>
+        <div class="smoke-layer smoke-layer-2"></div>
+        <div class="smoke-layer smoke-layer-3"></div>
+        
+        <div class="scene-content">
+            <!-- Ghost Logo -->
+            <div class="ghost-logo">
+                <div class="logo-text">GHOSTREP</div>
+                <img src="https://res.cloudinary.com/dolij7wjr/image/upload/v1744232341/messages_that_sound_like_hey_just_checking_in_lyyprj.png" alt="GhostRep Logo">
+            </div>
+            
+            <!-- Typewriter text -->
+            <div class="typewriter-container">
+                <div class="typewriter-text" id="typewriter-text">Deploy an AI that never sleeps.</div>
+                <div class="cursor" id="cursor"></div>
+            </div>
+            
+            <!-- CTA Button -->
+            <div class="cta-container">
+                <button class="cta-button">ENTER GHOSTREP</button>
+            </div>
+        </div>
+        
+        <!-- Direction indicator -->
+        <div class="direction-indicator direction-down">↓</div>
+    </section>
+    
+    <!-- Scene 2: The Problem - Pressure Zone -->
+    <section id="scene-2" class="scene-container">
+        <!-- Smoke background -->
+        <div class="smoke-layer smoke-layer-1"></div>
+        <div class="smoke-layer smoke-layer-2"></div>
+        <div class="smoke-layer smoke-layer-3"></div>
+        
+        <div class="scene-content">
+            <!-- Ghost Logo -->
+            <div class="ghost-logo">
+                <div class="logo-text">GHOSTREP</div>
+                <img src="https://res.cloudinary.com/dolij7wjr/image/upload/v1744232341/messages_that_sound_like_hey_just_checking_in_lyyprj.png" alt="GhostRep Logo">
+            </div>
+            
+            <!-- Primary copy with stacked lines -->
+            <div class="primary-copy">
+                <div class="line line-1 fade-in">You're burning hours sending cold DMs.</div>
+                <div class="line line-2 fade-in" style="animation-delay: 0.2s">Chasing replies.</div>
+                <div class="line line-3 fade-in" style="animation-delay: 0.4s">Begging for bookings.</div>
+                <div class="line line-4 fade-in" style="animation-delay: 0.6s">For what? One meeting?</div>
+            </div>
+            
+            <!-- Follow-up tagline -->
+            <div class="tagline fade-in" style="animation-delay: 0.8s">
+                You're not scaling. You're bleeding.
+            </div>
+            
+            <!-- Visual accent - Pressure gauge -->
+            <div class="pressure-gauge">
+                <div class="gauge-line" id="gauge-line"></div>
+            </div>
+            
+            <!-- CTA Button -->
+            <div class="cta-container">
+                <button class="cta-button" style="background: linear-gradient(135deg, #ff2d55 0%, #ff9500 100%);">FIND YOUR ESCAPE</button>
+            </div>
+        </div>
+        
+        <!-- Direction indicator -->
+        <div class="direction-indicator direction-down">↓</div>
+    </section>
+    
+    <!-- Scene 3: Mini Selection -->
+    <section id="scene-3" class="scene-container">
+        <div class="scene-content">
+            <!-- Ghost Logo at top -->
+            <div class="ghost-logo">
+                <div class="logo-text">GHOSTREP</div>
+                <img src="https://res.cloudinary.com/dolij7wjr/image/upload/v1744232341/messages_that_sound_like_hey_just_checking_in_lyyprj.png" alt="GhostRep Logo">
+            </div>
+            
+            <h1 class="scene-title">Choose Your Ghost</h1>
+            
+            <div class="mini-grid">
+                <!-- Placeholders for MINI cards - will be populated in the future -->
+                <div class="mini-card placeholder fade-in" style="animation-delay: 0.1s">
+                    <h3>LinkedIn Closer</h3>
+                </div>
+                <div class="mini-card placeholder fade-in" style="animation-delay: 0.2s">
+                    <h3>Instagram DM Assassin</h3>
+                </div>
+                <div class="mini-card placeholder fade-in" style="animation-delay: 0.3s">
+                    <h3>X Engagement Ghost</h3>
+                </div>
+            </div>
+            
+            <div class="cta-container">
+                <button class="cta-button">EXPLORE ALL GHOSTS</button>
+            </div>
+        </div>
+        
+        <!-- Direction indicator -->
+        <div class="direction-indicator direction-right">→</div>
+    </section>
+    
+    <!-- Scene 4: Targeting Precision -->
+    <section id="scene-4" class="scene-container">
+        <div class="scene-content">
+            <h1>Targeting Precision</h1>
+            <p class="text-block">Future scene content will go here, implementing the split layout as specified in the design guide.</p>
+            <div class="cta-container">
+                <button class="cta-button">CONTINUE</button>
+            </div>
+        </div>
+        
+        <!-- Direction indicator -->
+        <div class="direction-indicator direction-up">↑</div>
+    </section>
+    
+    <!-- Scene 5: Messaging -->
+    <section id="scene-5" class="scene-container">
+        <div class="scene-content">
+            <h1>Messaging</h1>
+            <p class="text-block">Future scene content will go here, implementing the split layout as specified in the design guide.</p>
+            <div class="cta-container">
+                <button class="cta-button">CONTINUE</button>
+            </div>
+        </div>
+        
+        <!-- Direction indicator -->
+        <div class="direction-indicator direction-left">←</div>
+    </section>
+    
+    <!-- Scene 6: Launch & Monitoring -->
+    <section id="scene-6" class="scene-container">
+        <div class="scene-content">
+            <h1>Launch & Monitoring</h1>
+            <p class="text-block">Future scene content will go here, implementing the split layout as specified in the design guide.</p>
+            <div class="cta-container">
+                <button class="cta-button">CONTINUE</button>
+            </div>
+        </div>
+        
+        <!-- Direction indicator -->
+        <div class="direction-indicator direction-right">→</div>
+    </section>
+    
+    <!-- Scene 7: Final CTA -->
+    <section id="scene-7" class="scene-container">
+        <div class="scene-content">
+            <h1>Deploy Your Ghost Army</h1>
+            <p class="text-block">Final call to action will go here, with a warp transition to the dashboard.</p>
+            <div class="cta-container">
+                <button class="cta-button">DEPLOY NOW</button>
+            </div>
+        </div>
+        
+        <!-- Direction indicator -->
+        <div class="direction-indicator direction-down">↓</div>
+    </section>
+    
+    <!-- Scene Controller JavaScript -->
+    <script src="../js/scene-controller.js"></script>
+    <script src="../js/warp-effect.js"></script>
+</body>
+</html>
+

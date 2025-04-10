@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostRep - Ghost Chamber</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/smoke-effect.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --base-dark: #0e0e0e;
+            --text-color: #ffffff;
+            --accent-neon: #0fffc1;
+            --accent-blue: #3b82f6;
+            --jetbrains: 'JetBrains Mono', monospace;
+        }
+        
+        body {
+            background-color: var(--base-dark);
+            color: var(--text-color);
+            font-family: var(--jetbrains);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+        
+        /* Chamber Container */
+        .chamber-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        /* Smoke Background */
+        .smoke-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .smoke-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(25, 25, 35, 0.8) 0%, rgba(14, 14, 14, 0.9) 70%, rgba(14, 14, 14, 1) 100%);
+            opacity: 0.8;
+            z-index: 2;
+        }
+        
+        .smoke-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(5px);
+            z-index: 1;
+        }
+        
+        @keyframes smokeDrift {
+            0% {
+                opacity: 0;
+                transform: translate(-5%, -5%) scale(1);
+            }
+            20% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+                transform: translate(0%, 0%) scale(1.05);
+            }
+            80% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(5%, 5%) scale(1.1);
+            }
+        }
+        
+        .smoke-particle {
+            position: absolute;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuMDUiIG51bU9jdGF2ZXM9IjYiIHN0aXRjaFRpbGVzPSJzdGl0Y2giIHJlc3VsdD0ibm9pc2UiLz48ZmVTcGVjdWxhckxpZ2h0aW5nIHN1cmZhY2VTY2FsZT0iMTAiIHNwZWN1bGFyQ29uc3RhbnQ9IjAuNyIgc3BlY3VsYXJFeHBvbmVudD0iMjAiIGxpZ2h0aW5nLWNvbG9yPSIjZmZmZmZmIiByZXN1bHQ9InNwZWN1bGFyIiBpbj0ibm9pc2UiPjxmZVBvaW50TGlnaHQgeD0iNTAiIHk9IjUwIiB6PSIyMDAiLz48L2ZlU3BlY3VsYXJMaWdodGluZz48ZmVDb21wb3NpdGUga1wiIGluPSJub2lzZSIgaW4yPSJzcGVjdWxhciIgb3BlcmF0b3I9ImFyaXRobWV0aWMiIGsxPSIwIiBrMj0iMCIgazM9IjAuNyIgazQ9IjAuMDEiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZmZmZmZiIgZmlsdGVyPSJ1cmwoI25vaXNlKSIvPjwvc3ZnPg==');
+            background-size: cover;
+            border-radius: 50%;
+            opacity: 0;
+            mix-blend-mode: overlay;
+        }
+        
+        /* Ghost SVG */
+        .ghost-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+            z-index: 3;
+        }
+        
+        .ghost-svg {
+            width: 120px;
+            height: 120px;
+            filter: drop-shadow(0 0 15px rgba(15, 255, 193, 0.3));
+            animation: ghostPulse 6s ease-in-out infinite;
+        }
+        
+        @keyframes ghostPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 15px rgba(15, 255, 193, 0.3));
+            }
+            50% {
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 25px rgba(15, 255, 193, 0.5));
+            }
+        }
+        
+        /* Typewriter Effect */
+        .typewriter-container {
+            margin-top: 60px;
+            text-align: center;
+            height: 40px;
+            font-family: var(--jetbrains);
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+            z-index: 3;
+        }
+        
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 2px solid var(--accent-neon);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: 
+                typing 3s steps(40, end),
+                blink-caret 0.75s step-end infinite;
+            animation-delay: 1s;
+            animation-fill-mode: both;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-neon) }
+        }
+        
+        /* CTA Button */
+        .cta-container {
+            margin-top: 80px;
+            z-index: 3;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            animation-delay: 5s;
+        }
+        
+        .cta-button {
+            font-family: var(--jetbrains);
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #000;
+            background: linear-gradient(135deg, var(--accent-neon) 0%, var(--accent-blue) 100%);
+            border: none;
+            border-radius: 4px;
+            padding: 16px 32px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(15, 255, 193, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(15, 255, 193, 0.6);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Fog Drift Animation */
+        .fog-drift {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(14, 14, 14, 0.3) 70%);
+            filter: blur(40px);
+            opacity: 0.4;
+            z-index: 2;
+            animation: fogPan 30s ease-in-out infinite alternate;
+        }
+        
+        @keyframes fogPan {
+            0% {
+                transform: translate(-5%, -5%) scale(1.1);
+            }
+            100% {
+                transform: translate(5%, 5%) scale(1.2);
+            }
+        }
+        
+        /* Generate multiple smoke particles with JavaScript */
+    </style>
+</head>
+<body>
+    <!-- Smoke Background -->
+    <div class="smoke-background">
+        <div class="smoke-layer"></div>
+        <div class="fog-drift"></div>
+        <div class="smoke-vortex"></div>
+        <div class="deep-fog"></div>
+        <div class="ground-fog"></div>
+        <div class="light-rays"></div>
+        <div class="smoke-particles" id="smoke-particles"></div>
+        <div id="smoke-wisps"></div>
+        <div id="dust-particles"></div>
+    </div>
+    
+    <!-- Scene Transition Elements -->
+    <div class="scene-transition" id="scene-transition"></div>
+    <div class="scene-flash" id="scene-flash"></div>
+    
+    <!-- Main Content -->
+    <div class="chamber-container">
+        <!-- Ghost SVG -->
+        <div class="ghost-container">
+            <svg class="ghost-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="ghostGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" stop-color="rgba(15, 255, 193, 0.2)"/>
+                        <stop offset="100%" stop-color="rgba(15, 255, 193, 0)"/>
+                    </radialGradient>
+                </defs>
+                <path d="M50,10 C32,10 20,25 20,40 C20,45 20,60 20,70 C20,75 15,75 15,70 C15,65 10,65 10,70 C10,75 15,85 25,85 C30,85 35,80 35,80 C35,80 40,85 45,85 C50,85 55,80 55,80 C55,80 60,85 65,85 C70,85 75,80 75,80 C75,80 80,85 85,85 C95,85 100,75 100,70 C100,65 95,65 95,70 C95,75 90,75 90,70 C90,60 90,45 90,40 C90,25 68,10 50,10 Z" 
+                    fill="rgba(255, 255, 255, 0.8)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="0.5"/>
+                <circle cx="50" cy="50" r="45" fill="url(#ghostGlow)"/>
+            </svg>
+        </div>
+        
+        <!-- Typewriter Text -->
+        <div class="typewriter-container">
+            <div class="typewriter">Deploy an AI that never sleeps.</div>
+        </div>
+        
+        <!-- CTA Button -->
+        <div class="cta-container">
+            <button class="cta-button" id="cta-button">Show Me GhostRep</button>
+        </div>
+    </div>
+    
+    <!-- Voice Controller for human-like narration -->
+    <script src="../js/voice-controller.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate ghost silhouette glow
+            const ghostContainer = document.querySelector('.ghost-container');
+            const ghostGlow = document.createElement('div');
+            ghostGlow.classList.add('ghost-silhouette-glow');
+            ghostContainer.insertBefore(ghostGlow, ghostContainer.firstChild);
+            
+            // Generate smoke particles
+            const smokeContainer = document.getElementById('smoke-particles');
+            const numParticles = 15;
+            
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('smoke-particle');
+                
+                // Random positioning and size
+                const size = 150 + Math.random() * 300;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                
+                // Animation timing
+                const duration = 15 + Math.random() * 25;
+                const delay = Math.random() * 10;
+                
+                particle.style.animation = `smokeDrift ${duration}s ${delay}s infinite ease-in-out`;
+                
+                smokeContainer.appendChild(particle);
+            }
+            
+            // Generate smoke wisps
+            const wispContainer = document.getElementById('smoke-wisps');
+            const numWisps = 10;
+            
+            for (let i = 0; i < numWisps; i++) {
+                const wisp = document.createElement('div');
+                wisp.classList.add('smoke-wisp');
+                
+                // Random positioning
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                wisp.style.left = `${posX}%`;
+                wisp.style.top = `${posY}%`;
+                
+                // Animation timing
+                const duration = 10 + Math.random() * 15;
+                const delay = Math.random() * 10;
+                
+                wisp.style.animation = `wispFloat ${duration}s ${delay}s infinite ease-in-out`;
+                
+                wispContainer.appendChild(wisp);
+            }
+            
+            // Generate dust particles
+            const dustContainer = document.getElementById('dust-particles');
+            const numDust = 30;
+            
+            for (let i = 0; i < numDust; i++) {
+                const dust = document.createElement('div');
+                dust.classList.add('dust-particle');
+                
+                // Random positioning
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                dust.style.left = `${posX}%`;
+                dust.style.top = `${posY}%`;
+                
+                // Animation timing
+                const duration = 8 + Math.random() * 12;
+                const delay = Math.random() * 15;
+                
+                dust.style.animation = `dustFloat ${duration}s ${delay}s infinite ease-out`;
+                
+                dustContainer.appendChild(dust);
+            }
+            
+            // Scene transition
+            const sceneTransition = document.getElementById('scene-transition');
+            const sceneFlash = document.getElementById('scene-flash');
+            const chamberContainer = document.querySelector('.chamber-container');
+            
+            // Button click event with enhanced transition
+            document.getElementById('cta-button').addEventListener('click', function() {
+                // Add transition classes
+                chamberContainer.classList.add('fade-out');
+                sceneFlash.classList.add('active');
+                
+                // Animate transition after a short delay
+                setTimeout(() => {
+                    sceneTransition.classList.add('active');
+                }, 300);
+                
+                // Navigate to next page after transition completes
+                setTimeout(() => {
+                    window.location.href = '../pages/pressure-zone.html';
+                }, 1800);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostRep - The Pressure Zone</title>
+    <link rel="stylesheet" href="../css/pressure-zone.css">
+    <link rel="stylesheet" href="../css/scene-transitions.css">
+    <link rel="stylesheet" href="../css/navigation-arrows.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Journey Progress Indicator -->
+    <div class="journey-progress">
+        <div class="progress-dots">
+            <div class="dot completed" data-step="1" title="Introduction"></div>
+            <div class="dot active" data-step="2" title="Pressure Zone"></div>
+            <div class="dot" data-step="3" title="Mini Selection"></div>
+            <div class="dot" data-step="4" title="Targeting Precision"></div>
+            <div class="dot" data-step="5" title="Messaging"></div>
+            <div class="dot" data-step="6" title="Launch Monitoring"></div>
+            <div class="dot" data-step="7" title="Ghost Nest"></div>
+        </div>
+    </div>
+    
+    <div class="pressure-container">
+        <!-- Smoke background (continued from Scene 1) -->
+        <div class="smoke-layer smoke-layer-1"></div>
+        <div class="smoke-layer smoke-layer-2"></div>
+        <div class="smoke-layer smoke-layer-3"></div>
+        
+        <!-- Main content -->
+        <div class="content-container">
+            <!-- Ghost Logo -->
+            <div class="ghost-logo-container">
+                <img class="ghost-logo" src="https://res.cloudinary.com/dolij7wjr/image/upload/v1744232341/messages_that_sound_like_hey_just_checking_in_lyyprj.png" alt="GhostRep Logo">
+            </div>
+            
+            <!-- Primary copy with stacked lines -->
+            <div class="primary-copy">
+                <div class="line line-1">You're burning hours sending cold DMs.</div>
+                <div class="line line-2">Chasing replies.</div>
+                <div class="line line-3">Begging for bookings.</div>
+                <div class="line line-4">For what? One meeting?</div>
+            </div>
+            
+            <!-- Follow-up tagline -->
+            <div class="tagline">
+                You're not scaling. You're bleeding.
+            </div>
+            
+            <!-- Visual accent - Pressure gauge -->
+            <div class="pressure-gauge">
+                <div class="gauge-line"></div>
+            </div>
+            
+            <!-- CTA Button -->
+            <div class="cta-container">
+                <button class="cta-button">SEND IN THE GHOSTS</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Voice Controller for human-like narration -->
+    <script src="../js/voice-controller.js"></script>
+    
+    <script src="../js/pressure-zone.js"></script>
+    <script src="../js/flow-controller.js"></script>
+    <script src="../js/hud-component.js"></script>
+    <script src="../js/navigation-arrows.js"></script>
+</body>
+</html>

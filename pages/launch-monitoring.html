@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostRep - Launch & Monitoring</title>
+    <link rel="stylesheet" href="../css/scene-transitions.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', 'JetBrains Mono', sans-serif;
+            background-color: #0e0e0e;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Split Layout */
+        .split-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+        }
+        
+        @media (max-width: 768px) {
+            .split-container {
+                flex-direction: column;
+            }
+        }
+        
+        /* Left Side - Launch Process */
+        .split-left {
+            flex: 1;
+            background: #0a0a0a;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Right Side - Dashboard Preview */
+        .split-right {
+            flex: 1;
+            background: #080808;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Ghost Logo */
+        .ghost-logo {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .ghost-logo img {
+            width: 40px;
+            height: auto;
+            margin-right: 1rem;
+            filter: drop-shadow(0 0 5px rgba(15, 255, 193, 0.4));
+        }
+        
+        .ghost-logo .logo-text {
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            color: #0fffc1;
+            text-shadow: 0 0 5px rgba(15, 255, 193, 0.6);
+        }
+        
+        /* Content Styling */
+        .content-heading {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            max-width: 80%;
+        }
+        
+        .content-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 70ch;
+            color: #e0e0e0;
+        }
+        
+        .highlight {
+            color: #0fffc1;
+            font-weight: 600;
+        }
+        
+        /* Launch Steps */
+        .launch-steps {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(15, 255, 193, 0.1);
+            color: #0fffc1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-desc {
+            font-size: 1rem;
+            color: #d0d0d0;
+            line-height: 1.5;
+        }
+        
+        /* Dashboard Preview */
+        .dashboard-preview {
+            width: 100%;
+            max-width: 500px;
+            background: #121212;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dashboard-header {
+            background: #1a1a1a;
+            padding: 1.2rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        
+        .dashboard-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .dashboard-title::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #0fffc1;
+            border-radius: 50%;
+        }
+        
+        .dashboard-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 1.5rem;
+        }
+        
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.2rem;
+            border-radius: 8px;
+        }
+        
+        .metric-title {
+            font-size: 0.8rem;
+            color: #b0b0b0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .metric-change {
+            font-size: 0.8rem;
+            color: #0fffc1;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .dashboard-chart {
+            width: 100%;
+            height: 180px;
+            margin-top: 1rem;
+            padding: 0 1.5rem 1.5rem;
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+        }
+        
+        .chart-bar {
+            background: linear-gradient(180deg, #0fffc1 0%, #3b82f6 100%);
+            border-radius: 2px 2px 0 0;
+            flex: 1;
+        }
+        
+        /* Random heights for chart bars */
+        .chart-bar:nth-child(1) { height: 60%; }
+        .chart-bar:nth-child(2) { height: 40%; }
+        .chart-bar:nth-child(3) { height: 75%; }
+        .chart-bar:nth-child(4) { height: 50%; }
+        .chart-bar:nth-child(5) { height: 90%; }
+        .chart-bar:nth-child(6) { height: 65%; }
+        .chart-bar:nth-child(7) { height: 80%; }
+        .chart-bar:nth-child(8) { height: 70%; }
+        .chart-bar:nth-child(9) { height: 85%; }
+        .chart-bar:nth-child(10) { height: 75%; }
+        .chart-bar:nth-child(11) { height: 95%; }
+        .chart-bar:nth-child(12) { height: 80%; }
+        
+        /* CTA Button */
+        .cta-container {
+            margin-top: 2.5rem;
+        }
+        
+        .cta-button {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #0fffc1 0%, #3b82f6 100%);
+            color: #0e0e0e;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(15, 255, 193, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(15, 255, 193, 0.5);
+            filter: brightness(1.1) blur(0.3px);
+        }
+        
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+        
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .split-left, .split-right {
+                padding: 2rem;
+                height: 50vh;
+            }
+            
+            .content-heading {
+                font-size: 2rem;
+                max-width: 100%;
+            }
+            
+            .ghost-logo {
+                top: 1rem;
+                left: 1rem;
+            }
+            
+            .dashboard-preview {
+                max-width: 90%;
+            }
+            
+            .dashboard-metrics {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-chart {
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ghost-logo">
+        <img src="https://res.cloudinary.com/dolij7wjr/image/upload/v1744232341/messages_that_sound_like_hey_just_checking_in_lyyprj.png" alt="GhostRep Logo">
+        <div class="logo-text">GHOSTREP</div>
+    </div>
+    
+    <div class="split-container">
+        <!-- Left Side - Content -->
+        <div class="split-left">
+            <h1 class="content-heading">Launch & Monitor Your Ghost Army</h1>
+            <p class="content-text">
+                Zero setup. Zero maintenance. Your ghosts deploy instantly and <span class="highlight">continuously optimize</span> based on real-time performance.
+            </p>
+            
+            <div class="launch-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">One-Click Deployment</div>
+                        <div class="step-desc">Your ghost is automatically provisioned and begins operations within minutes of deployment.</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Real-Time Monitoring</div>
+                        <div class="step-desc">Track performance metrics, engagement rates, and conversion data through your personalized dashboard.</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">AI-Driven Optimization</div>
+                        <div class="step-desc">Your ghost continuously learns from interactions, refining its approach for maximum effectiveness.</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Human Oversight</div>
+                        <div class="step-desc">Review critical interactions and provide guidance to further enhance your ghost's performance.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-container">
+                <button class="cta-button">Deploy Your Ghost Army</button>
+            </div>
+        </div>
+        
+        <!-- Right Side - Dashboard Preview -->
+        <div class="split-right">
+            <div class="dashboard-preview">
+                <div class="dashboard-header">
+                    <div class="dashboard-title">GhostRep Performance Dashboard</div>
+                </div>
+                
+                <div class="dashboard-metrics">
+                    <div class="metric-card">
+                        <div class="metric-title">Active Conversations</div>
+                        <div class="metric-value">347</div>
+                        <div class="metric-change">↑ 24% this week</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-title">Response Rate</div>
+                        <div class="metric-value">68%</div>
+                        <div class="metric-change">↑ 12% this week</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-title">Meeting Bookings</div>
+                        <div class="metric-value">28</div>
+                        <div class="metric-change">↑ 40% this week</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-title">Conversion Rate</div>
+                        <div class="metric-value">8.1%</div>
+                        <div class="metric-change">↑ 18% this week</div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-chart">
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Voice Controller for human-like narration -->
+    <script src="../js/voice-controller.js"></script>
+    
+    <script src="../js/flow-controller.js"></script>
+    <script src="../js/hud-component.js"></script>
+    
+    <script>
+        // Add event listener to the CTA button
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            // Add fade-out transition
+            document.body.style.transition = 'opacity 0.8s ease';
+            document.body.style.opacity = '0';
+            
+            // Navigate to ghost-nest.html after transition
+            setTimeout(function() {
+                window.location.href = '../pages/ghost-nest.html';
+            }, 800);
+        });
+    </script>
+</body>
+</html>
