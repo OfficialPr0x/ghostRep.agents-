@@ -1,107 +1,112 @@
-# GhostRep Server
+# 👻 GhostReps — Deploy Minds, Not Just Code
 
-A Node.js Express server to deliver the GhostRep static website with proper routing.
+> **GhostReps** are plug-and-play AI agents—“ghosts”—that you can deploy inside your apps, workflows, websites, and teams. They’re smart, autonomous, memory-driven assistants that can converse, act, and evolve.
 
-## Local Development
+---
 
-To run the server locally:
+## 🧠 The Core Value
 
-1. Install dependencies:
-   ```
-   npm install
-   ```
+**“Deploy a Ghost. Let it think, respond, and act—so you don’t have to.”**
 
-2. Start the server:
-   ```
-   npm start
-   ```
+GhostReps transform any digital environment into an intelligent, autonomous system. Instead of building AI into your app from scratch, you drop in a ghost that already knows what to do.
 
-3. The site will be available at [http://localhost:3000](http://localhost:3000)
+- 🪄 No API gymnastics
+- 🔌 No fragile prompt chains
+- 🧱 No infrastructure headaches
 
-## DreamHost Deployment
+---
 
-### Prerequisites
+## 🔥 TL;DR – What You Get
 
-- DreamHost shared hosting account with SSH access
-- Node.js installed via NVM (Node Version Manager)
+| 🎯 For Users | 🛠️ For Teams | 👨‍💻 For Developers |
+|-------------|--------------|---------------------|
+| Ask a ghost, get insight | Automate workflows | Deploy & control AI agents |
+| Get help 24/7 | Add brains to your backend | Use SDKs, webhooks, or UI |
+| Embed anywhere | Cut manual busywork | Streamline integration |
 
-### Deployment Steps
+---
 
-1. **Upload the files to your DreamHost server**
+## 💼 Real-World Use Cases
 
-   Use FTP, SFTP, or Git to upload all project files to your DreamHost directory.
+### 1️⃣ Customer Support Ghost
+- Embed widget on your website in 2 lines of code
+- Handles FAQs, refunds, complaints, and contact capture
 
-2. **Update .htaccess file**
+### 2️⃣ Workflow Automation Ghost
+- Trigger via webhooks (Zapier, Make, n8n)
+- Analyze, prioritize, and act on incoming data
 
-   Edit the `.htaccess` file to point to your actual Node.js installation:
+### 3️⃣ Dev Ghost in the IDE
+- Integrated into FlexPilot / Monaco Editor
+- Review code, generate snippets, answer API questions
 
-   ```
-   # Find your Node.js path by running:
-   # which node
-   
-   # Replace this line with your actual Node.js path:
-   PassengerNodejs /home/yourusername/.nvm/versions/node/vX.X.X/bin/node
-   ```
+### 4️⃣ Analyst Ghost
+- Plug into your spreadsheet or Postgres
+- Ask: "Show sales growth by region over the past 6 months"
 
-3. **Install dependencies**
+---
 
-   SSH into your DreamHost server and run:
-   ```
-   cd /path/to/your/site
-   npm install --production
-   ```
+## 🔧 Functional Capabilities
 
-4. **Set up environment variables**
+| Feature | Description |
+|---------|-------------|
+| 🧠 Ghost Creation | Define role, memory, logic via UI or YAML |
+| ✍️ Live Editor | Edit ghost prompts/code with Monaco & AI assist |
+| 🧩 Integrations | 1-click web, Zapier, Slack, OpenRouter |
+| 📈 Metrics | Ghost activity, performance, logs dashboard |
+| 🧬 Memory Engine | Contextual, progressive memory for tasks |
+| 🔐 Access Control | User auth + role-based controls |
 
-   Update the `.env` file with your production settings.
+---
 
-5. **Configure DreamHost web panel**
+## 💥 Integration Options (1-Click Magic)
 
-   - Enable Passenger in your domain settings in the DreamHost panel
-   - Ensure your domain points to the correct directory
-
-6. **Restart the application**
-
-   In some cases, you may need to restart the Passenger application:
-   ```
-   touch tmp/restart.txt
-   ```
-
-### Troubleshooting
-
-- **404 Errors**: Make sure all static assets have correct paths and the server is properly routing requests.
-- **Missing Dependencies**: Check if all npm packages installed correctly.
-- **Permission Issues**: Ensure your files have the correct permissions (typically 644 for files, 755 for directories).
-
-### Server Logs
-
-Passenger logs can be found in your DreamHost account. Look for files like:
-```
-~/logs/yourdomainname.com/http/error.log
+### 📦 Website Widget (Embed)
+```html
+<!-- GhostRep Widget -->
+<script>
+(function() {
+  const script = document.createElement('script');
+  script.src = 'https://ghostrep.io/widget.js';
+  script.dataset.agent = 'support-bot';
+  script.async = true;
+  document.head.appendChild(script);
+})();
+</script>
 ```
 
-## Directory Structure
-
-```
-├── index.html          # Main entry page
-├── server.js           # Express server 
-├── package.json        # Dependencies
-├── .env                # Environment variables
-├── .htaccess           # Passenger configuration
-├── dreamhost.js        # DreamHost specific setup
-├── css/                # Stylesheets
-├── js/                 # JavaScript files
-└── pages/              # HTML page files
+### ⚙️ Webhook for Automation (Zapier/Make)
+```http
+POST https://ghostrep.io/api/v1/agents/support-bot/run
 ```
 
-## Features
+### 🧠 SDK Example (JavaScript)
+```js
+import { GhostRep } from 'ghostrep-js';
 
-- Serves static files
-- Smart routing to handle direct HTML requests
-- Support for client-side routing
-- Compression for improved performance
-- CORS support
+const ghost = new GhostRep('support-bot');
+const reply = await ghost.ask("How do I handle a refund?");
+console.log(reply);
+```
 
-## License
+---
 
-All rights reserved.
+## 🚀 Why GhostReps Win
+
+✅ **Fully Embeddable** – drop into anything, instantly.  
+✅ **Composable Agents** – plug multiple ghosts into shared workflows.  
+✅ **Private by Design** – control memory, context, and API access.  
+✅ **Designed for Teams** – from devs to ops to customer success.
+
+---
+
+## 🌌 The Vision
+
+> **GhostReps is your AI operating layer.**  
+> A constellation of autonomous, deployable minds that power your business from every angle.
+
+From support to engineering to marketing—your Ghosts are on duty.
+
+---
+
+Need a Ghost? Just click Deploy. It’ll do the rest.
